@@ -3,7 +3,9 @@ from email.policy import default
 from pickle import TRUE
 from unicodedata import category
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 
 
 class Category(models.Model):
@@ -18,6 +20,7 @@ class Post(models.Model):
         author = models.ForeignKey(User ,on_delete=models.SET_NULL,null=True)
         Title=models.CharField(max_length=100)
         Content=models.TextField()
+        tags = TaggableManager()
         counted_view = models.IntegerField(default=0)
         category = models.ManyToManyField(Category)
         status = models.BooleanField(default=False)
@@ -34,4 +37,8 @@ class Post(models.Model):
 
         def __str__(self):
                 return "{} - {}".format(self.Title,self.id)
+
+
+        def get_absolute_url(self):
+                return reverse('blog:single', kwargs={'pid':self.id}) 
 
