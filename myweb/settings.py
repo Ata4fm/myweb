@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'multi_captcha_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,10 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'website.apps.WebsiteConfig',
+    'django_summernote',
     'blog.apps.BlogConfig',
     'robots',
     'debug_toolbar',
     'taggit',
+    'captcha',
+    'accounts',
+    
     
     
     
@@ -65,7 +70,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'myweb.urls'
@@ -159,3 +165,11 @@ INTERNAL_IPS = [
     "127.0.0.1",
    
 ]
+
+X_FRAME_OPTION = 'SAMEORIGIN'
+
+
+MULTI_CAPTCHA_ADMIN = {
+
+    'engine' : 'simple-captcha',
+}
